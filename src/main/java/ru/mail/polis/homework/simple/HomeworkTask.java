@@ -2,6 +2,7 @@ package ru.mail.polis.homework.simple;
 
 import java.util.function.ToDoubleFunction;
 
+
 public class HomeworkTask {
 
     /**
@@ -10,7 +11,16 @@ public class HomeworkTask {
      * Считаем, что функция определена на всем пространстве от a до b
      */
     public static double calcIntegral(double a, double b, ToDoubleFunction<Double> function, double delta) {
-        return 0;
+        double integral_value = 0.0;
+        double c = a;
+
+        while (b > c) {
+            integral_value += function.applyAsDouble(c) * delta;
+            c += (delta);
+
+        }
+
+        return integral_value;
     }
 
     /**
@@ -18,7 +28,20 @@ public class HomeworkTask {
      * выводим номер первой максимальной цифры (если их несколько)
      */
     public static byte maxNumber(long a) {
-        return 0;
+        long number = a;
+        int count = 0;
+        int Max_digit = 0;
+        int index = 0;
+
+        while (number > 0) {
+            count++;
+            if (Max_digit <= (number % 10)) {
+                index = count;
+                Max_digit = (int) number % 10;
+            }
+            number /= 10;
+        }
+        return (byte) (count - index + 1);
     }
 
 
@@ -27,6 +50,10 @@ public class HomeworkTask {
      * которая находится на той же прямой что и первые две.
      */
     public static double lineFunction(int x1, int y1, int x2, int y2, int x3) {
+        if (x1 != x2) {
+            return (((double) (y2 - y1) * (x3 - x1) / (double) (x2 - x1)) + y1);
+        }
+        System.out.println("Error");
         return 0;
     }
 
